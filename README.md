@@ -4,6 +4,24 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
 
+```mermaid
+flowchart TD
+    A[Start Transform]
+    A --> B[Receive Key and Value]
+    B --> C[Canonicalize JSON Value]
+    C --> D[Compute SHA-256 Hash of Canonical JSON]
+    D --> E[Convert Hash Bytes to Hex String]
+    E --> F[Get Stored Hash from kvStore]
+    F --> G{Does newHash equal oldHash?}
+    G -- Yes --> H[Return null]
+    G -- No --> I[Store newHash in kvStore]
+    I --> J[Forward Record]
+    H & J --> K[End Transform]
+    C --> |Exception| L[Log Exception]
+    L --> H
+```
+
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
