@@ -4,15 +4,12 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Produces;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.state.KeyValueStore;
 import org.apache.kafka.streams.state.StoreBuilder;
 import org.apache.kafka.streams.state.Stores;
 import org.jboss.logging.Logger;
-
-import java.util.Properties;
 
 @ApplicationScoped
 public class DedupTopologyProducer {
@@ -41,7 +38,7 @@ public class DedupTopologyProducer {
         KStream<String, String> inputStream = builder.stream("input-topic");
 
         KStream<String, String> deduplicatedStream = inputStream.transformValues(
-                () -> new DeduplicationTransformer(storeName),
+                () -> new JsonDeduplicationTransformer(storeName),
                 storeName);
 
         deduplicatedStream.filter((key, value) -> value != null).to("output-topic");

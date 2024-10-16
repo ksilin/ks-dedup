@@ -6,6 +6,9 @@ plugins {
 repositories {
     mavenCentral()
     mavenLocal()
+    maven   {
+        url = uri("https://packages.confluent.io/maven/")
+    }
 }
 
 val quarkusPlatformGroupId: String by project
@@ -15,6 +18,7 @@ val quarkusPlatformVersion: String by project
 dependencies {
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
     implementation("io.quarkus:quarkus-kafka-streams")
+    implementation("io.confluent:kafka-streams-avro-serde:7.7.1")
     implementation("io.quarkus:quarkus-micrometer")
     implementation("io.quarkus:quarkus-micrometer-registry-prometheus")
     implementation("io.quarkus:quarkus-arc")

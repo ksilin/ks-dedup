@@ -10,16 +10,16 @@ import org.jboss.logging.Logger;
 
 import java.security.MessageDigest;
 
-class DeduplicationTransformer implements ValueTransformerWithKey<String, String, String> {
+class JsonDeduplicationTransformer implements ValueTransformerWithKey<String, String, String> {
 
-    Logger logger = Logger.getLogger(DeduplicationTransformer.class);
+    Logger logger = Logger.getLogger(JsonDeduplicationTransformer.class);
 
     private final String storeName;
     private KeyValueStore<String, String> kvStore;
     private ObjectMapper objectMapper;
     private MessageDigest digest;
 
-    DeduplicationTransformer(String storeName) {
+    JsonDeduplicationTransformer(String storeName) {
         this.storeName = storeName;
     }
 
