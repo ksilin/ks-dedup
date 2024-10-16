@@ -4,6 +4,9 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
 
+![mermaid-flow(2)](https://github.com/user-attachments/assets/e5dcf759-3745-4128-86ee-05346497041c)
+
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
